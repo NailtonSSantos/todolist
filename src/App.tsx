@@ -1,21 +1,33 @@
 import { useState } from 'react';
 import * as C from './App.styles'; //Chamei de C meus componentes importados
 import { Item } from './types/Item';
-import { ListItem } from './components/ListItem'
+import { ListItem } from './components/ListItem';
+import { AddArea } from './components/AddArea';
+
+
+
 const App = () => {
   const [list, setList] = useState<Item[]>([
-    {id: 1, name: 'Comprar Pão', done: false},
-    {id: 2, name: 'Comprar Carne', done: true}
+    {id: 1, name: 'Exemplo de Tarefa', done: false},
   ]);
+
+  const handleAddTask = (taskName: string) => {
+      let newList = [...list];
+      newList.push({
+        id: list.length + 1,
+        name: taskName,
+        done: false
+      });
+      setList(newList);
+  };
 
   return (
     <C.Container>
       <C.Area>
         <C.Header>Lista de Tarefas</C.Header>
 
-        {/*Adição de nova tarefa Aqui*/}
+        <AddArea onEnter={handleAddTask} />
 
-        {/*Lista de Tarefas*/}
         {list.map((item, index) =>(
           <ListItem key={index} item={item}/>
         ))}
