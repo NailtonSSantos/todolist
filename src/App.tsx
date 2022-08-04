@@ -8,7 +8,7 @@ import { AddArea } from './components/AddArea';
 
 const App = () => {
   const [list, setList] = useState<Item[]>([
-    {id: 1, name: 'Exemplo de Tarefa', done: false},
+    
   ]);
 
   const handleAddTask = (taskName: string) => {
